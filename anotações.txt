@@ -1,10 +1,66 @@
 php -S localhost:8000
+==========================================
+📘 ANOTAÇÕES PHP - JUNIOR (LOUSA DIGITAL)
+==========================================
 
-Variáveis:
-- Primeiro guarda informação [input]  $variavel
-- Depois lê a informação     [output] echo "";
+▶ COMO RODAR O PROJETO:
+--------------------------
+php -S localhost:8000
+# Acesse no navegador: http://localhost:8000
 
-Reduzir código:
-<?php echo "frase"; ?>
-troca por
-<?= "frase" ?>
+▶ VARIÁVEIS (GUARDAR E USAR DADOS):
+--------------------------------------
+$nome = "Junior";         // guarda texto
+$idade = 25;              // guarda número
+
+echo $nome;               // mostra Junior na tela
+
+▶ ATALHO DO ECHO:
+----------------------
+<?php echo "Oi"; ?>
+pode virar:
+<?= "Oi" ?>
+
+▶ FOREACH (PERCORRER LISTA):
+------------------------------
+foreach ($lista as $item) {
+    echo $item;
+}
+# Lê cada item da lista um por um
+
+▶ ARRAY_FILTER (FILTRAR LISTA):
+----------------------------------
+array_filter($lista, function ($item) {
+    return $item['ano'] >= 2024;
+});
+# Só entra na nova lista quem passar na condição
+
+▶ FUNÇÃO VERIFICAR SE TERMINOU:
+----------------------------------
+function verificarSeEstaFinalizado($projeto) {
+    if ($projeto['finalizado']) {
+        return 'Finalizado ✅';
+    }
+    return 'Não finalizado ⛔';
+}
+
+▶ ERRO CORRIGIDO DO CÓDIGO:
+------------------------------
+if ((2024 - $ano) > 2) // ERRADO: ano é fixo
+CORRETO:
+if ((2024 - $projeto['ano']) > 2) // muda com cada projeto
+
+▶ RESUMO RÁPIDO:
+-------------------
+echo         = mostra texto/valor
+<?=          = echo mais curto
+foreach      = percorre uma lista
+array_filter = filtra uma lista
+function     = bloco de código que você reaproveita
+if           = faz checagem/condição
+
+▶ EXEMPLO COMPLETO:
+---------------------
+foreach ($projetosFiltrados as $projeto) {
+    echo $projeto['titulo'];
+}
