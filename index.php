@@ -17,7 +17,7 @@
     $saudacao    = "Oi";
     $titulo      = $saudacao . ", Portfólio do " . $nome;
     $subtitulo   = "Seja bem-vindo ao meu portfólio!";
-    $anoCriacao  = 2020; // renomeado p/ indicar base do cálculo
+    $ano  = 2020; // renomeado p/ indicar base do cálculo
 
     // =====================================
     // 📋 PASSO 2: CRIAR LISTA DE PROJETOS
@@ -26,25 +26,25 @@
         [
             "titulo"     => "Meu Portfólio",
             "finalizado" => false,
-            "data"       => "2025-06-12",
+            "ano"       => 2021,
             "descricao"  => "Meu primeiro portfólio. Escrito em PHP e HTML."
         ],
         [
             "titulo"     => "Lista de Tarefas",
             "finalizado" => true,
-            "data"       => "2025-05-11",
+            "ano"       => 2025,
             "descricao"  => "Lista de tarefas. Escrito em PHP e HTML."
         ],
         [
             "titulo"     => "Controle de Leitura de Livros",
             "finalizado" => true,
-            "data"       => "2025-05-11",
+            "ano"       => 2025,
             "descricao"  => "Lista de livros. Escrito em PHP e HTML."
         ],
         [
             "titulo"     => "Mais um projeto",
             "finalizado" => false,
-            "data"       => "2026-09-11",
+            "ano"       => 2020,
             "descricao"  => "Projeto secreto em andamento. Escrito em PHP e HTML."
         ],
     ];
@@ -62,24 +62,26 @@
         return '<span style="color: red">Não finalizado ⛔</span>';
     }
 
-    // FUNÇÃO 2: Filtrar projetos (finalizado/não finalizado/todos)
-    function filtrarProjetos($listaDeProjetos, $finalizado = null)
+    // FUNÇÃO 2: Filtrar projetos por finalizas e ano (finalizado/não finalizado/todos)
+    function filtro($itens, $funcao)
     {
-        // Se $finalizado for null = mostra TODOS os projetos
-        if (is_null($finalizado)) {
-            return $listaDeProjetos;
-        }
-
-        // Se não for null = filtra pelos finalizados ou não finalizados
         $filtrados = [];
 
-        foreach ($listaDeProjetos as $projeto) {
-            if ($projeto['finalizado'] === $finalizado) {
-                $filtrados[] = $projeto;
+        foreach ($itens as $item) {
+            if ($funcao($item)) {
+                $filtrados[] = $item;
             }
         }
         return $filtrados;
     }
+
+    $projetosFiltrados = filtro(
+        $projetos,
+        function ($projeto) {
+            return $projeto['ano'] === 2024 || $projeto['ano'] === 2021;
+        }
+    );
+
 
     ?>
 
@@ -88,7 +90,7 @@
     <!-- ===================================== -->
     <h1><?= $titulo ?></h1>
     <p><?= $subtitulo ?></p>
-    <p><?= $anoCriacao ?></p>
+    <p><?= $ano ?></p>
 
     <hr />
 
@@ -98,16 +100,16 @@
     <ul>
         <?php
         // AQUI É ONDE A MÁGICA ACONTECE:
-        // 1. filtrarProjetos($projetos, true) = pega só projetos finalizados
+        // 1. $projetosFiltrados já tem só projetos finalizados
         // 2. foreach = percorre cada projeto filtrado
         // 3. mostra cada projeto na tela
         ?>
-        <?php foreach (filtrarProjetos($projetos, true) as $projeto): ?>
+        <?php foreach ($projetosFiltrados as $projeto): ?>
 
             <li
                 <?php // Condição: se tem mais de 2 anos, muda cor de fundo 
                 ?>
-                <?php if ((2025 - $anoCriacao) > 2): ?>
+                <?php if ((2024 - $ano) > 2): ?>
                 style="background-color: burlywood;"
                 <?php endif; ?>>
 
@@ -116,7 +118,7 @@
                 <p><?= $projeto['descricao'] ?></p>
 
                 <div>
-                    <div>Data: <?= $projeto['data'] ?></div>
+                    <div>Ano: <?= $projeto['ano'] ?></div>
                     <div>
                         Projeto: <?= verificarSeEstaFinalizado($projeto); ?>
                     </div>
