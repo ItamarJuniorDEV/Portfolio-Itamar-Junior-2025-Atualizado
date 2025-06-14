@@ -75,10 +75,10 @@
         return $filtrados;
     }
 
-    $projetosFiltrados = filtro(
+    $projetosFiltrados = array_filter(
         $projetos,
         function ($projeto) {
-            return $projeto['ano'] === 2024 || $projeto['ano'] === 2021;
+            return $projeto['ano'] >= 2024;
         }
     );
 
@@ -111,7 +111,8 @@
                 ?>
                 <?php if ((2024 - $ano) > 2): ?>
                 style="background-color: burlywood;"
-                <?php endif; ?>>
+                <?php endif; ?>
+
 
                 <!-- MOSTRAR DADOS DO PROJETO -->
                 <h2><?= $projeto['titulo'] ?></h2>
