@@ -1,6 +1,6 @@
 php -S localhost:8000
 ==========================================
-📘 ANOTAÇÕES PHP - JUNIOR (LOUSA DIGITAL)
+📘 ANOTAÇÕES PHP
 ==========================================
 
 ▶ COMO RODAR O PROJETO:
