@@ -1,0 +1,10 @@
+php -S localhost:8000
+
+Variáveis:
+- Primeiro guarda informação [input]  $variavel
+- Depois lê a informação     [output] echo "";
+
+Reduzir código:
+<?php echo "frase"; ?>
+troca por
+<?= "frase" ?>
